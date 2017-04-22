@@ -1,0 +1,164 @@
+<!-- <script type="text/javascript">
+/*	var fn;
+	var m = 20;
+	function foo() {
+   		 var a = 2;
+    	function baz(a) { 
+        	console.log( a );
+    	}
+    	fn = baz; 
+	}
+	function bar() {
+    	fn(m); 
+	}
+
+	foo();
+	bar()*/
+function add() {
+    // 第一次执行时，定义一个数组专门用来存储所有的参数
+    var _args = [].slice.call(arguments);
+
+    // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+    var adder = function () {
+        var _adder = function() {
+            [].push.apply(_args, [].slice.call(arguments));
+            return _adder;
+        };
+
+        // 利用隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+        _adder.toString = function () {
+            return _args.reduce(function (a, b) {
+                return a + b;
+            });
+        }
+
+        return _adder;
+    }
+    return adder.apply(null, [].slice.call(arguments));
+}
+
+// 输出结果，可自由组合的参数
+console.log(add(1, 2, 3, 4, 5));  // 15
+console.log(add(1, 2, 3, 4)(5));  // 15
+console.log(add(1)(2)(3)(4)(5));  // 15*/
+
+
+/*var currying = function(fn) {
+    var args = [].slice.call(arguments, 1);
+
+    return function() {
+        // 主要还是收集所有需要的参数到一个数组中，便于统一计算
+        var _args = args.concat([].slice.call(arguments));
+        return fn.apply(null, _args);
+    }
+}
+
+var sum = currying(function() {
+    var args = [].slice.call(arguments);
+    return args.reduce(function(a, b) {
+        return a + b;
+    })
+}, 10)
+
+console.log(sum(20, 10));  // 40
+console.log(sum(10, 5));   // 25*/
+</script> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  code here
+  <title>demo</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    
+    .head, li div {
+      display: inline-block;
+      width: 70px;
+      text-align: center;
+    }
+
+    li .id, li .sex, .id, .sex {
+      width: 15px;
+    }
+
+    li .name, .name {
+      width: 40px;
+    }
+
+    li .tel, .tel {
+      width: 90px;
+    }
+
+    li .del, .del {
+      width: 15px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .user-delete {
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="J_container">
+    <div class="record-head">
+      <div class="head id">序号</div><div class="head name">姓名</div><div class="head sex">性别</div><div class="head tel">电话号码</div><div class="head province">省份</div><div class="head">操作</div>
+    </div>
+    <ul id="J_List">
+      <li><div class="id">1</div><div class="name">张三</div><div class="sex">男</div><div class="tel">13788888888</div><div class="province">浙江</div><div class="user-delete">删除</div></li>
+      <li><div class="id">2</div><div class="name">李四</div><div class="sex">女</div><div class="tel">13788887777</div><div class="province">四川</div><div class="user-delete">删除</div></li>
+      <li><div class="id">3</div><div class="name">王二</div><div class="sex">男</div><div class="tel">13788889999</div><div class="province">广东</div><div class="user-delete">删除</div></li>
+    </ul>
+  </div>
+<script type="text/javascript" src="./jquery.min.js"></script>
+<script type="text/javascript" src="./showClass.js"></script>
+<script>
+
+Show.showClass('#J_List');
+
+
+/*// 此处也可换成ES6的写法
+function Contact(){
+    this.init();
+}
+
+var eventUtil = {
+	addHandler :function(ele,type,handler){
+		if(ele.addEventListener){
+			ele.addEventListener(type,handler,false);
+		}else if(ele.attachEvent){
+			ele.attachEvent('on'+type,handler);
+		}else{
+			ele['on'+type] = handler;
+		}
+	}
+};
+	
+var items = document.getElementsByClassName('user-delete');
+var temp = [];
+for(var i=0;i<items.length;i++){
+	temp.push(items[i]);
+}
+temp.forEach(function(item){
+eventUtil.addHandler(item,'click',function(e){
+	if(this.parentNode){
+	var container = document.getElementById('J_List');
+	container.removeChild(this.parentNode);
+	}
+});
+});*/
+
+</script>
+</body>
+</html> 
+
+

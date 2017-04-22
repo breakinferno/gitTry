@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<title>loadTest</title>
+</head>
+<body>
+<div class="parent">
+啥子都没有
+<div class="child"></div>
+</div>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(e){
+			$('.parent').on('click',function(e){
+			$('.child').load('tpl.html');
+			return false;
+		});
+	});
+	
+
+</script>
+</body>
+</html>
