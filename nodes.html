@@ -1,0 +1,56 @@
+<html>
+  <head></head>
+  <body>
+    <div>
+      <span>f</span>
+      <span>o</span>
+      <span>o</span>
+    </div>
+    <script>
+
+var rt = {
+  totalElementsCount: 0,
+  maxDOMTreeDepth: 0,
+  maxChildrenCount: 0
+};
+
+
+
+var parents = function(node){
+    if(node.parentNode){
+      return parents(node.parentNode)+1;
+
+    }else{
+      return 0;
+    }
+}
+
+parents.count = 0;
+
+var totalNode = function(tag){
+  rt.totalElementsCount ++;
+
+	var dom = tag === 'html'?[].slice.call(document.getElementsByTagName(tag))[0]:tag;
+  var children = dom.children;
+
+
+
+  if(children.length ==0 || typeof children === 'undefined' ){
+    return;
+  }
+  rt.maxDOMTreeDepth = Math.max(rt.maxDOMTreeDepth,parents(children[0]));
+  rt.maxChildrenCount = Math.max(rt.maxChildrenCount,children.length);
+	for(var i=0;i<children.length;i++){
+    totalNode(children[i]);
+	}	
+
+  
+}
+
+totalNode('html');
+
+console.log('dept:'+rt.maxDOMTreeDepth+'children:'+rt.maxChildrenCount+'count:'+rt.totalElementsCount)
+
+    </script>
+  </body>
+</html>

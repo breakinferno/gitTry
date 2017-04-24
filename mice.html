@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+var mice = [
+   { x: 12, y: 33, timeout: 600 },
+   { x: 62, y: 18, timeout: 1400 },
+   { x: 41, y: 70, timeout: 2300 },
+];
+
+var num = mice.length;
+
+
+var showMouse = function(x,y){
+	console.log("mouse's position: x=" + x + 'y=' + y);
+}
+
+var hideMouse = function(mouse){
+	console.log("hide mouse at : x=" + mouse.x + 'y=' + mouse.y);
+}
+
+var randomMouse = function(){
+	return	Math.floor(Math.random()*num);
+}
+
+var dealMouse = function(mouse){
+
+	showMouse(mice[mouse].x,mice[mouse].y);
+	setTimeout(function(){
+		hideMouse(mice[mouse]);
+		return dealMouse(randomMouse());//日了狗了
+	},mice[mouse].timeout);
+}
+
+
+dealMouse(randomMouse());	
+
+
+</script>
+</body>
+</html>
